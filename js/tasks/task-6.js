@@ -8,8 +8,11 @@
 
  */
 
-// let weight = '88,3';
-// let height = '1.75';
+let weight = '88,3';
+let height = '1.75';
 
-// const bmi = ;
-// console.log(bmi); // 28.8
+weight = Number(parseFloat(weight.split(",").join(".")));
+height = Number(parseFloat(height));
+
+const bmi = weight / (height ** 2);
+console.log(bmi.toFixed(1)); // 28.8
