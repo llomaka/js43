@@ -1,16 +1,30 @@
-// todo Отображение времени (if...else)
+//todo Основы объектов
 /*
- * Напиши скрипт для отображения часов и минут в консоли браузера в виде строки формата "14 ч. 26 мин.". Если значение переменной minutes равно 0, то выводи строку "14 ч.", без минут.
+ * Напиши скрипт, который, для объекта user, последовательно:
+
+* добавляет поле mood со значением 'happy'
+* заменяет значение hobby на 'skydiving'
+* заменяет значение premium на false
+* выводит содержимое объекта user в формате ключ:значение используя Object.keys() и for...of
  */
 
-const hours = 14;
-const minutes = 26;
-let timeString;
+const user = {
+    name: 'Mango',
+    age: 20,
+    hobby: 'html',
+    premium: true,
+};
 
-if (minutes === 0) {
-    timeString = `${hours} ч.`;
-} else {
-    timeString = `${hours} ч. ${minutes} мин.`;
+console.table(user);
+
+user.mood = 'happy';
+
+user.hobby = 'skydiving';
+
+user.premium = false;
+console.table(user);
+
+const props = Object.keys(user);
+for (const prop of props) {
+    console.log(`${key}: ${user[key]}`);
 }
-
-console.log(timeString);

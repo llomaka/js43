@@ -1,13 +1,21 @@
-// todo Вложенные ветвления
+//todo Массив объектов
 /*
- * Напиши скрипт, который сравнивает числа в переменных a и b. Если оба значения больше 100, то выведи в консоль максимальное из них. В противном случае в консоли должна быть сумма значения b и числа 512.
+ * Напишите ф-цию calcTotalPrice(stones, stoneName), которая принимает массив объектов и строку с названием камня. Ф-ция считает и возвращает общую стоимость камней с таким именем, ценой и количеством из объекта
  */
 
-const a = 120;
-const b = 180;
+const stones = [
+    { name: 'Изумруд', price: 1300, quantity: 4 },
+    { name: 'Бриллиант', price: 2700, quantity: 3 },
+    { name: 'Сапфир', price: 400, quantity: 7 },
+    { name: 'Щебень', price: 200, quantity: 2 },
+];
 
-if (a > 100 && b > 100) {
-    console.log(a > b ? a : b);
-} else {
-    console.log(b + 512);
+function calcTotalPrice(stones, stoneName) {
+    for (const item of stones) {
+        if (item.name === stoneName) {
+            return item.price * item.quantity;
+        }
+    }
 }
+
+console.log(calcTotalPrice(stones, 'Бриллиант'));
