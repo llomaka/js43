@@ -2,6 +2,10 @@
 /*
  * Дополни функцию createContact(partialContact) так, чтобы она возвращала новый объект контакта с добавленными свойствами id и createdAt, а также list со значением "default" если в partialContact нет такого свойства.
  */
+createContact(partialContact) {
+    
+}
+
 
 console.log(
     createContact({
