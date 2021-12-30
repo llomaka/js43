@@ -3,10 +3,8 @@
  * Напиши функцию transformUsername(user) так, чтобы она возвращала новый объект со свойством fullName, вместо firstName и lastName.
  */
 
-function transformUsername(user) {
-    const { id, firstName, lastName, email, friendCount } = user;
-    const fullName = firstName + ' ' + lastName;
-    return {id, fullName, email, friendCount};
+function transformUsername({ firstName, lastName, ...otherProps }) {
+    return {fullName: `${firstName} ${lastName}`, ...otherProps};
 }
 
 console.log(
