@@ -5,5 +5,25 @@
  * logTotalPrice(product) - коллбек принимающий объект продукта и логирующий общую стоимость товара в консоль
  */
 
-// createProduct({ name: '🍎', price: 30, quantity: 3 }, logProduct);
-// createProduct({ name: '🍋', price: 20, quantity: 5 }, logTotalPrice);
+function createProduct(obj, callback) {
+    const product = {
+        id: '_' + Math.random().toString(36).substr(2, 9),
+        ...obj
+    };
+    callback(product);
+};
+
+function logProduct(product) { 
+    console.log(product);
+};
+
+function logTotalPrice(product) { 
+    let totalPrice = 0;
+    totalPrice = product.price * product.quantity;
+    console.log(totalPrice);
+    return totalPrice;
+};
+
+
+createProduct({ name: '🍎', price: 30, quantity: 3 }, logProduct);
+createProduct({ name: '🍋', price: 20, quantity: 5 }, logTotalPrice);
