@@ -86,7 +86,7 @@ const cars = [
  * Пусть функция getCarsWithType возвращает массив автомобилей тип которых совпадает со значением параметра type.
  */
 
-const getCarsWithType = (cars, type) => {};
+const getCarsWithType = (cars, type) => cars.filter(car => car.type === type);
 
 console.table(getCarsWithType(cars, 'suv'));
 console.table(getCarsWithType(cars, 'sedan'));
