@@ -86,10 +86,12 @@ const cars = [
  * Пусть функция getAvailableCarNames возвращает массив моделей автомобилей, но только тех, которые сейчас на распродаже.
  */
 
-const getModelsOnSale = cars => cars.reduce(function(arr, {model, onSale}){
-  if (onSale)  
-  {arr.push(model);}
-  return arr;
-}, []);
+// const getModelsOnSale = cars => cars.reduce(function(arr, {model, onSale}){
+//   if (onSale)  
+//   {arr.push(model);}
+//   return arr;
+// }, []);
+
+const getModelsOnSale = cars => cars.filter(car => car.onSale).map(car => car.model);
 
 console.table(getModelsOnSale(cars));
