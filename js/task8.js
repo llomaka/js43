@@ -86,6 +86,6 @@ const cars = [
  * Пусть функция sortByDescendingPrice возвращает новый массив автомобилей отсортированный по убыванию значения свойства price.
  */
 
-const sortByDescendingPrice = cars => {};
+const sortByDescendingPrice = cars => cars.sort((firstCar, secondCar) => secondCar.price - firstCar.price);
 
 console.table(sortByDescendingPrice(cars));
