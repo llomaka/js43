@@ -86,7 +86,7 @@ const cars = [
  * Пусть функция makeCarsWithDiscount возвращает новый массив объектов с именным значением свойства price в зависимости от переданной скидки.
  */
 
-const makeCarsWithDiscount = (cars, discount) => cars.map(({price}) => price*discount);;
+const makeCarsWithDiscount = (cars, discount) => cars.map(car => ({...car, price: car.price*(1-discount)}));
 
 console.table(makeCarsWithDiscount(cars, 0.2));
 console.table(makeCarsWithDiscount(cars, 0.4));
