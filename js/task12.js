@@ -86,6 +86,10 @@ const cars = [
  * Пусть функция getSortedCarsOnSale возвращает массив автомобилей на распродаже (свойство onSale), отсортированных по возрастанию цены.
  */
 
-const getSortedCarsOnSale = cars => {};
+const getSortedCarsOnSale = cars => cars.reduce(function(arr, car){
+  if (car.onSale)  
+  {arr.push(car);}
+  return arr;
+}, []).sort((firstCar, secondCar) => firstCar.price - secondCar.price);
 
 console.table(getSortedCarsOnSale(cars));

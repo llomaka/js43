@@ -90,6 +90,6 @@ const getModelsOnSale = cars => cars.reduce(function(arr, {model, onSale}){
   if (onSale)  
   {arr.push(model);}
   return arr;
-}, []);;
+}, []);
 
 console.table(getModelsOnSale(cars));
