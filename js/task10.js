@@ -86,6 +86,8 @@ const cars = [
  * Пусть функция getTotalAmount возвращает общее количество автомобилей(значение свойств amount).
  */
 
-const getTotalAmount = cars => {};
+const getTotalAmount = cars => cars.reduce(function(total, {amount}){
+    return total + amount;
+}, 0);
 
 console.log(getTotalAmount(cars));
