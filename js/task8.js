@@ -87,5 +87,4 @@ const cars = [
  */
 
 const sortByDescendingPrice = cars => cars.sort((firstCar, secondCar) => secondCar.price - firstCar.price);
-
 console.table(sortByDescendingPrice(cars));
