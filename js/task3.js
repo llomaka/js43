@@ -86,7 +86,7 @@ const cars = [
  * Пусть функция filterByPrice возвращает массив автомобилей, цена которых меньше чем значение параметра threshold.
  */
 
-const filterByPrice = (cars, threshold) => {};
+const filterByPrice = (cars, threshold) => cars.filter(car => car.price < threshold);
 
 console.table(filterByPrice(cars, 30000));
 console.table(filterByPrice(cars, 25000));
