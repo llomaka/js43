@@ -86,6 +86,6 @@ const cars = [
  * Пусть функция getCarsWithDiscount возвращает массив автомобилей свойство onSale которых true.
  */
 
-const getCarsWithDiscount = cars => {};
+const getCarsWithDiscount = cars => cars.filter(car => car.onSale);
 
 console.table(getCarsWithDiscount(cars));
