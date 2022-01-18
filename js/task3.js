@@ -1,5 +1,3 @@
-//todo Метод filter
-
 /*
 *
 Создайте объект calculator с тремя методами:
@@ -9,8 +7,22 @@
 * mult() - перемножает сохранённые значения и возвращает результат.
 */
 
-/*
- * Пусть функция filterByPrice возвращает массив автомобилей, цена которых меньше чем значение параметра threshold.
- */
+const calculator = {
+    x: 0,
+    y: 0,
+    read(a, b) { 
+        this.x = a;
+        this.y = b;
+    },
+    add() { 
+        return this.x + this.y;
+    },
+    mult() { 
+        return this.x * this.y;
+    },
+};
 
-const calculator = {};
+
+calculator.read(20, 30);
+calculator.add();
+calculator.mult();
