@@ -10,10 +10,10 @@ const phonebook = {
         const newContact = {
             list: 'default',
             ...contact,
-            id: generateId(),
-            createdAt: getDate(),
+            id: this.generateId(),
+            createdAt: this.getDate(),
         };
-        contacts.push(newContact);
+        return this.contacts.push(newContact);
     },
     generateId() {
         return '_' + Math.random().toString(36).substr(2, 9);
