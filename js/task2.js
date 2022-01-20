@@ -11,7 +11,7 @@
  */
 
 class Storage {
-    constructor(goods) {
+    constructor(goods = []) {
         this.items = goods;
     }
     getItems() {
@@ -20,11 +20,12 @@ class Storage {
     addItem(item) {
         this.items.push(item);
     }
-    removeItem(item) {
-        if (this.items.indexOf(item) === -1) {
-            return `Элемент ${item} отсутствует в массиве товаров.`;
+    removeItem(itemName) {
+        if (this.items.indexOf(itemName) === -1) {
+            return `Элемент ${itemName} отсутствует в массиве товаров.`;
         } else {
-            this.items.splice(this.items.indexOf(item), 1);
+            // this.items.splice(this.items.indexOf(item), 1);
+            this.items = this.items.filter(element => element !== itemName);
         }
     }
 }
