@@ -10,6 +10,25 @@
 * removeItem(item) - получает товар и, если он есть, удаляет его из текущих.
  */
 
+class Storage {
+    constructor(goods) {
+        this.items = goods;
+    }
+    getItems() {
+        return this.items;
+    }
+    addItem(item) {
+        this.items.push(item);
+    }
+    removeItem(item) {
+        if (this.items.indexOf(item) === -1) {
+            return `Элемент ${item} отсутствует в массиве товаров.`;
+        } else {
+            this.items.splice(this.items.indexOf(item), 1);
+        }
+    }
+}
+
 const storage = new Storage(['🍎', '🍋', '🍇', '🍑']);
 
 const items = storage.getItems();
