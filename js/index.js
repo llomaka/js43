@@ -56,7 +56,7 @@ const account = {
 formRef.addEventListener('submit', event => {
   event.preventDefault();
   const userDesc = event.currentTarget.elements.description.value;
-  const userInput = event.currentTarget.elements.amount.value;
+  const userInput = Number(event.currentTarget.elements.amount.value);
   if (!userInput || !userDesc) return;
   // const markup = account.transactions.map(object => renderOperation(object)).join(' ');
   // console.log(markup);
@@ -65,11 +65,11 @@ formRef.addEventListener('submit', event => {
   itemEl.classList.add('item');
   itemEl.textContent = userInput + " " + userDesc;
   if (Number(userInput) < 0) {
-    account.withdraw(Math.abs(Number(userInput)), userDesc);
+    account.withdraw(Math.abs(userInput), userDesc);
     itemEl.classList.add('item-minus');
   }
   else {
-    account.deposit(Number(userInput), userDesc);
+    account.deposit(userInput, userDesc);
     itemEl.classList.add('item-plus');
   }
   listRef.append(itemEl);
