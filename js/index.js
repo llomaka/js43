@@ -56,32 +56,20 @@ const account = {
 formRef.addEventListener('submit', event => {
   event.preventDefault();
   const userDesc = event.currentTarget.elements.description.value;
-    const userInput = event.currentTarget.elements.amount.value;
-    if (!userInput) return;
-    const itemEl = document.createElement('li');
-    itemEl.classList.add('item');
-    itemEl.textContent = userInput;
-    listRef.append(itemEl);
-    if (Number(userInput) < 0) {
-      account.withdraw(Math.abs(Number(userInput)), userDesc);      
-    }
-    else {
-        account.deposit(Number(userInput), userDesc);
-    }
-  console.log(account.transactions);
+  const userInput = event.currentTarget.elements.amount.value;
+  if (!userInput || !userDesc) return;
+  const itemEl = document.createElement('li');
+  itemEl.classList.add('item');
+  itemEl.textContent = userInput;
+  listRef.append(itemEl);
+  if (Number(userInput) < 0) {
+    account.withdraw(Math.abs(Number(userInput)), userDesc);      
+  }
+  else {
+    account.deposit(Number(userInput), userDesc);
+  }
   totalAmountRef.textContent = account.getBalance();
   totalDepositRef.textContent = account.getTransactionTotal('deposit');
   totalWithdrawRef.textContent = account.getTransactionTotal('withdraw');
-    formRef.reset();
+  formRef.reset();
 });
-
-// account.deposit(80);
-// account.deposit(300);
-// account.withdraw(200);
-// account.deposit(2000);
-// console.log(account.getBalance());
-// account.withdraw(120);
-// account.deposit(20);
-// console.log(account.getBalance());
-// console.log(account.getTransactionTotal('withdraw'));
-// account.getTransactionDetails(5);
