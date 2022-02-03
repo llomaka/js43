@@ -137,3 +137,11 @@ body {
 .total-amount {
   color: var(--main-mint);
 }
+
+.total-deposit {
+  color: green;
+}
+
+.total-withdraw {
+  color: red;
+}

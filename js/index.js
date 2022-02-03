@@ -6,18 +6,15 @@ const transactionType = {
 const formRef = document.querySelector('.form');
 const listRef = document.querySelector('.list');
 const totalAmountRef = document.querySelector('.total-amount');
+const totalWithdrawRef = document.querySelector('.total-withdraw');
+const totalDepositRef = document.querySelector('.total-deposit');
 
 const account = {
-    // Текущий баланс счета
+
   balance: 0,
 
-   // История транзакций
   transactions: [],
 
-    /*
-     * Метод создает и возвращает объект транзакции.
-     * Принимает сумму и тип транзакции.
-     */
   createTransaction(amount, type) {
     let generateId = this.transactions.length;
     const newTransaction = { id: generateId, type, amount };
@@ -26,40 +23,19 @@ const account = {
     else { this.balance -= amount; }
   },
 
-    /*
-     * Метод отвечающий за добавление суммы к балансу.
-     * Принимает сумму транзакции.
-     * Вызывает createTransaction для создания объекта транзакции
-     * после чего добавляет его в историю транзакций
-     */
-  deposit(amount) {
-    this.createTransaction(amount, transactionType.DEPOSIT);
+  deposit(amount, description) {
+    this.createTransaction(amount, transactionType.DEPOSIT, description);
   },
 
-    /*
-     * Метод отвечающий за снятие суммы с баланса.
-     * Принимает сумму транзакции.
-     * Вызывает createTransaction для создания объекта транзакции
-     * после чего добавляет его в историю транзакций.
-     *
-     * Если amount больше чем текущий баланс, выводи сообщение
-     * о том, что снятие такой суммы не возможно, недостаточно средств.
-     */
-  withdraw(amount) {
+  withdraw(amount, description) {
     if (amount > this.balance) { alert(`Снятие ${amount} невозможно. Не достаточно средств.`); return;}
-    this.createTransaction(amount, transactionType.WITHDRAW);
+    this.createTransaction(amount, transactionType.WITHDRAW, description);
   },
 
-    /*
-     * Метод возвращает текущий баланс
-     */
   getBalance() {
     return this.balance;
   },
 
-    /*
-     * Метод ищет и возвращает объект транзакции по id
-     */
   getTransactionDetails(id) {
     for (const item of this.transactions) {
         if (item.id === id) { console.table(item); return item; }
@@ -67,34 +43,34 @@ const account = {
     console.log(`Транзакция с идентификатором ${id} не найдена.`)
   },
 
-    /*
-     * Метод возвращает количество средств
-     * определенного типа транзакции из всей истории транзакций
-     */
   getTransactionTotal(type) {
-    let total = 0;
-    for (const item of this.transactions) {
-        if (item.type === type) { total += item.amount;}
-    }
-    return total;
+    return this.transactions.reduce((total, item) => {
+      if (type === item.type) {
+        total += item.amount;
+      }
+      return total;
+    }, 0);
   },
 };
 
 formRef.addEventListener('submit', event => {
-    event.preventDefault();
+  event.preventDefault();
+  const userType = event.currentTarget.elements.description.value;
     const userInput = event.currentTarget.elements.amount.value;
     if (!userInput) return;
     const itemEl = document.createElement('li');
     itemEl.classList.add('item');
     itemEl.textContent = userInput;
     listRef.append(itemEl);
-    if (Number(userInput) < 0) {
+    if (userType === 'withdraw') {
         account.withdraw(Math.abs(Number(userInput)));
     }
-    else {
+    else if (userType === 'deposit') {
         account.deposit(Number(userInput));
     }
-    totalAmountRef.textContent = account.getBalance();
+  totalAmountRef.textContent = account.getBalance();
+  totalDepositRef.textContent = account.getTransactionTotal('deposit');
+  totalWithdrawRef.textContent = account.getTransactionTotal('withdraw');
     formRef.reset();
 });
 
