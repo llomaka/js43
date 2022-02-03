@@ -113,7 +113,7 @@ body {
 }
 
 .item::before {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   left: 0;
@@ -125,6 +125,22 @@ body {
   border-color: var(--main-mint);
   transform-origin: bottom left;
   transform: rotate(45deg);
+}
+
+.item-plus {
+  border-bottom: 1px solid green;
+}
+
+.item-plus::before {
+  border-color: green;
+}
+
+.item-minus {
+  border-bottom: 1px solid red;
+}
+
+.item-minus::before {
+  border-color: red;
 }
 
 .total {

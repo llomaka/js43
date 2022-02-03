@@ -58,18 +58,30 @@ formRef.addEventListener('submit', event => {
   const userDesc = event.currentTarget.elements.description.value;
   const userInput = event.currentTarget.elements.amount.value;
   if (!userInput || !userDesc) return;
+  // const markup = account.transactions.map(object => renderOperation(object)).join(' ');
+  // console.log(markup);
+  // listRef.innerHTML = markup;
   const itemEl = document.createElement('li');
   itemEl.classList.add('item');
-  itemEl.textContent = userInput;
-  listRef.append(itemEl);
+  itemEl.textContent = userInput + " " + userDesc;
   if (Number(userInput) < 0) {
-    account.withdraw(Math.abs(Number(userInput)), userDesc);      
+    account.withdraw(Math.abs(Number(userInput)), userDesc);
+    itemEl.classList.add('item-minus');
   }
   else {
     account.deposit(Number(userInput), userDesc);
+    itemEl.classList.add('item-plus');
   }
+  listRef.append(itemEl);
   totalAmountRef.textContent = account.getBalance();
   totalDepositRef.textContent = account.getTransactionTotal('deposit');
   totalWithdrawRef.textContent = account.getTransactionTotal('withdraw');
   formRef.reset();
 });
+
+function renderOperation({ description, amount }) {
+  return `<li class="item">
+    <p>${description}</p>
+    <p>${amount}</p>
+  </li>`;
+}
