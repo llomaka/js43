@@ -15,9 +15,9 @@ const account = {
 
   transactions: [],
 
-  createTransaction(amount, type) {
+  createTransaction(amount, type, description) {
     let generateId = this.transactions.length;
-    const newTransaction = { id: generateId, type, amount };
+    const newTransaction = { id: generateId, type, amount, description };
     this.transactions.push(newTransaction);
     if (type == transactionType.DEPOSIT) { this.balance += amount; }
     else { this.balance -= amount; }
@@ -55,19 +55,20 @@ const account = {
 
 formRef.addEventListener('submit', event => {
   event.preventDefault();
-  const userType = event.currentTarget.elements.description.value;
+  const userDesc = event.currentTarget.elements.description.value;
     const userInput = event.currentTarget.elements.amount.value;
     if (!userInput) return;
     const itemEl = document.createElement('li');
     itemEl.classList.add('item');
     itemEl.textContent = userInput;
     listRef.append(itemEl);
-    if (userType === 'withdraw') {
-        account.withdraw(Math.abs(Number(userInput)));
+    if (Number(userInput) < 0) {
+      account.withdraw(Math.abs(Number(userInput)), userDesc);      
     }
-    else if (userType === 'deposit') {
-        account.deposit(Number(userInput));
+    else {
+        account.deposit(Number(userInput), userDesc);
     }
+  console.log(account.transactions);
   totalAmountRef.textContent = account.getBalance();
   totalDepositRef.textContent = account.getTransactionTotal('deposit');
   totalWithdrawRef.textContent = account.getTransactionTotal('withdraw');
