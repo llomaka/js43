@@ -25,6 +25,7 @@ function onButtonsClick(event) {
     const currentEl = event.target;
     const currentValue = event.target.dataset.value;
     const activeEl = document.querySelector('.button.is-active');
+    // if (!currentValue) return;
     if (activeEl) {
         activeEl.classList.remove('is-active');
     }
