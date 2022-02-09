@@ -1,87 +1,34 @@
-const transactionType = {
-  DEPOSIT: 'deposit',
-  WITHDRAW: 'withdraw',
-};
+import { courses } from './courses.js';
 
-const formRef = document.querySelector('.form');
-const listRef = document.querySelector('.list');
-const totalAmountRef = document.querySelector('.total-amount');
-const totalWithdrawRef = document.querySelector('.total-withdraw');
-const totalDepositRef = document.querySelector('.total-deposit');
+// console.log(courses);
 
-const account = {
-
-  balance: 0,
-
-  transactions: [],
-
-  createTransaction(amount, type, description) {
-    let generateId = this.transactions.length;
-    const newTransaction = { id: generateId, type, amount, description };
-    this.transactions.push(newTransaction);
-    if (type == transactionType.DEPOSIT) { this.balance += amount; }
-    else { this.balance -= amount; }
-  },
-
-  deposit(amount, description) {
-    this.createTransaction(amount, transactionType.DEPOSIT, description);
-  },
-
-  withdraw(amount, description) {
-    if (amount > this.balance) { alert(`Снятие ${amount} невозможно. Не достаточно средств.`); return;}
-    this.createTransaction(amount, transactionType.WITHDRAW, description);
-  },
-
-  getBalance() {
-    return this.balance;
-  },
-
-  getTransactionDetails(id) {
-    for (const item of this.transactions) {
-        if (item.id === id) { console.table(item); return item; }
-    }
-    console.log(`Транзакция с идентификатором ${id} не найдена.`)
-  },
-
-  getTransactionTotal(type) {
-    return this.transactions.reduce((total, item) => {
-      if (type === item.type) {
-        total += item.amount;
-      }
-      return total;
-    }, 0);
-  },
-};
-
-formRef.addEventListener('submit', event => {
-  event.preventDefault();
-  const userDesc = event.currentTarget.elements.description.value;
-  const userInput = Number(event.currentTarget.elements.amount.value);
-  if (!userInput || !userDesc) return;
-  // const markup = account.transactions.map(object => renderOperation(object)).join(' ');
-  // console.log(markup);
-  // listRef.innerHTML = markup;
-  const itemEl = document.createElement('li');
-  itemEl.classList.add('item');
-  itemEl.textContent = userInput + " " + userDesc;
-  if (Number(userInput) < 0) {
-    account.withdraw(Math.abs(userInput), userDesc);
-    itemEl.classList.add('item-minus');
-  }
-  else {
-    account.deposit(userInput, userDesc);
-    itemEl.classList.add('item-plus');
-  }
-  listRef.append(itemEl);
-  totalAmountRef.textContent = account.getBalance();
-  totalDepositRef.textContent = account.getTransactionTotal('deposit');
-  totalWithdrawRef.textContent = account.getTransactionTotal('withdraw');
-  formRef.reset();
-});
-
-function renderOperation({ description, amount }) {
-  return `<li class="item">
-    <p>${description}</p>
-    <p>${amount}</p>
-  </li>`;
+const refs = {
+    container: document.querySelector('.container'),
+    buttons: document.querySelector('.buttons-container'),
+    courses: document.querySelector('.courses-container'),
 }
+
+// const allCourses = courses.flatMap(course => course.tags).filter((item, index, array)=> array.indexOf(item) === index);
+// console.log(allCourses);
+
+const uniqueCourses = [...new Set(courses.flatMap(course => course.tags))];
+console.log(uniqueCourses);
+renderHTML(uniqueCourses);
+
+function renderHTML(array) {
+    const markup = array.map(item => `<button type="button" class="button" data-value="${item}">${item}</button>`).join('');
+    return refs.buttons.insertAdjacentHTML('beforeend', markup);
+}
+
+function onButtonsClick(event) {
+    if (event.target.nodeName !== 'BUTTON') return;
+    const currentEl = event.target;
+    const currentValue = event.target.dataset.value;
+    const activeEl = document.querySelector('.button.is-active');
+    if (activeEl) {
+        activeEl.classList.remove('is-active');
+    }
+    currentEl.classList.add('is-active');
+}
+
+refs.container.addEventListener('click', onButtonsClick);

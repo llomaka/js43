@@ -1,49 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <title>Занятие-6-1</title>
-  </head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lesson 7-1</title>
+        <link rel="stylesheet" href="./css/styles.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="buttons-container"></div>
 
-  <body>
-    <div class="container">
-      <div class="wrapper">
-        <form class="form">
-          <label class="label">
-            Описание операции
-            <input class="input" type="text" name="description" />
-          </label>
-
-          <label class="label">
-            Сумма операции
-            <input class="input" type="number" name="amount" />
-          </label>
-
-          <button class="button" type="submit">Добавить</button>
-        </form>
-
-        <div class="main">
-          <h3 class="total">
-            Общий баланс:
-            <span class="total-amount">0</span>
-          </h3>
-          <h3 class="total">
-            Общий баланс по депозиту:
-            <span class="total-deposit">0</span>
-          </h3>
-          <h3 class="total">
-            Общий баланс по кредиту:
-            <span class="total-withdraw">0</span>
-          </h3>
+            <div class="courses-container"></div>
         </div>
-      </div>
 
-      <ul class="list"></ul>
-    </div>
-
-    <script src="/js/index.js"></script>
-  </body>
+        <script src="./js/index.js" type="module"></script>
+    </body>
 </html>
