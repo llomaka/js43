@@ -14,6 +14,8 @@ const refs = {
 const uniqueCourses = [...new Set(courses.flatMap(course => course.tags))];
 console.log(uniqueCourses);
 renderHTML(uniqueCourses);
+renderCourses(courses);
+
 
 function renderHTML(array) {
     const markup = array.map(item => `<button type="button" class="button" data-value="${item}">${item}</button>`).join('');
@@ -30,6 +32,18 @@ function onButtonsClick(event) {
         activeEl.classList.remove('is-active');
     }
     currentEl.classList.add('is-active');
+    if (currentEl === activeEl) {
+        activeEl.classList.remove('is-active');
+        return renderCourses(courses);
+    }
+    const filteredCourses = courses.filter(course => course.tags.includes(currentValue));
+    renderCourses(filteredCourses);
+}
+
+function renderCourses(array) {
+    refs.courses.innerHTML = '';
+    const markup = array.map(item => `<li>${item.name} - ${item.prices}</li>`).join('');
+    return refs.courses.insertAdjacentHTML('beforeend', "<ol>" + markup + "</ol>");
 }
 
 refs.container.addEventListener('click', onButtonsClick);
