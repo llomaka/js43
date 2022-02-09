@@ -31,11 +31,10 @@ function onButtonsClick(event) {
     if (activeEl) {
         activeEl.classList.remove('is-active');
     }
-    currentEl.classList.add('is-active');
     if (currentEl === activeEl) {
-        activeEl.classList.remove('is-active');
         return renderCourses(courses);
     }
+    currentEl.classList.add('is-active');
     const filteredCourses = courses.filter(course => course.tags.includes(currentValue));
     renderCourses(filteredCourses);
 }
