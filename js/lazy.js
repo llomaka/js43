@@ -11,3 +11,10 @@ const images = [
     'image-10.jpeg',
     'image-11.jpeg',
 ];
+
+const imageGallery = document.querySelector('.image-gallery');
+const renderGallery = function () { 
+    const markup = images.map(image => `<li><img src=../images/${image} alt="cat" loading="lazy" width="1280" height="853" /></li>`).join('');
+    imageGallery.insertAdjacentHTML('beforeend', markup);
+};
+renderGallery();

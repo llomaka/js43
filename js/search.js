@@ -11,18 +11,46 @@ const contacts = [
     'Thane Saunders',
     'Hope Alford',
     'Vernon Brown',
+    'Amanda Phillips',
+    'Pamela Green',
+    'Raymond Collier',
+    'Cody Knight',
+    'Jacqueline Hudson', 
+    'Michael Evans',
+    'Steven Clements',
+    'Keith Duke',
+    'Robin Jones',
+    'Misty Miller',
+    'Meredith White',
+    'Brenda Munoz',
+    'Jamie Flores',
+    'Carlos Carroll',
+    'Paula Herman',
+    'Frederick Parks',
+    'Alyssa Gregory',
+    'Brooke Mills',
+    'Jessica Hernandez',
+    'Katelyn Martin',
+    'Michelle Burns',
+    'Stephanie Wilson',
+    'Lori Chandler',
+    'Donald Little',
+    'Steven Proctor',
+    'Jonathon Morales',
+    'Angelica Hansen',
+    'Leslie Daniels',
 ];
 
 const input = document.querySelector('.input');
 const contactsList = document.querySelector('.contacts-list');
 
-input.addEventListener('input', onInput);
+input.addEventListener('input', _.throttle(onInput, 800));
 
 function onInput(event) {
     const request = event.target.value.trim();
 
     const filteredContacts = contacts.filter(contact =>
-        contact.toLowerCase().includes(request),
+        contact.toLowerCase().includes(request.toLowerCase()),
     );
 
     renderContacts(filteredContacts);
