@@ -14,7 +14,7 @@ const images = [
 
 const imageGallery = document.querySelector('.image-gallery');
 const renderGallery = function () { 
-    const markup = images.map(image => `<li><img src=../images/${image} alt="cat" loading="lazy" width="1280" height="853" /></li>`).join('');
+    const markup = images.map(image => `<li><img src="../images/lqip-image.jpeg" data-src="../images/${image}" class="lazyload" alt="cat" loading="lazy" width="1280" height="853" /></li>`).join('');
     imageGallery.insertAdjacentHTML('beforeend', markup);
 };
 renderGallery();
